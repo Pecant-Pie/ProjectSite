@@ -2,8 +2,8 @@ var buttonTramBuffer = 5;
 
 //var turtleWeightMin = 0.9;
 //var turtleWeightMax = 1;
-var turtleAccel = 3;	//per render frame
-var turtleLimit = 20;
+var turtleAccel = 2;	//per render frame
+var turtleLimit = 10;
 var turtleDecay = 0.01;
 var turtleRand = 0.3;
 
@@ -23,6 +23,33 @@ setInterval(updatePacman, 25);
 $(document).click(function(){
 	addPacman();
 })
+wrapWords();
+
+////
+
+function wrapWords(){
+	$.each($(".rainText"), function(index, data){
+		var text = data.innerHTML;
+		var last = 0;
+		for(var i = 0; i < text.length; i++){
+			if(text.charAt(i)){
+				var word = text.substring(last, i) + " ";
+				var elem = document.createElement("div");
+				elem.classList.add("rain");
+				elem.innerHTML = word;
+				elem.style.color = "#f00";
+				var outer = document.createElement("div");
+				outer.appendChild(elem);
+				data.appendChild(outer);
+				var last = i+1;
+			}
+		}
+	});
+}
+
+function updateWords(){
+	
+}
 
 function updateButtons(){
 	$.each($(".buttoncarrier"), function(index, carrier){
