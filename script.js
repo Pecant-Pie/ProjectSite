@@ -2,7 +2,7 @@ var buttonTramBuffer = 5;
 
 //var turtleWeightMin = 0.9;
 //var turtleWeightMax = 1;
-var turtleAccel = .5;	//per render frame
+var turtleAccel = 3;	//per render frame
 var turtleLimit = 20;
 var turtleDecay = 0.01;
 var turtleRand = 0.3;
