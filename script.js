@@ -1,23 +1,37 @@
 var buttonTramBuffer = 5;
 
-var numPacman = 1;
-var turtleAccel = 0.1;	//per render frame
+//var turtleWeightMin = 0.9;
+//var turtleWeightMax = 1;
+var turtleAccel = .5;	//per render frame
+var turtleLimit = 20;
+var turtleDecay = 0.01;
+var turtleRand = 0.3;
+
+var pacManSize = 50;
 
 ////////////////
 
-$("body").mousemove(function(event){
-	updateButtons(event);
-	updatePacman(event);
+var mouse = { x: -1, y: -1 };
+$(document).mousemove(function(event) {
+	mouse.x = event.pageX;
+	mouse.y = event.pageY;
+	
+	updateButtons();
 });
 
-function updateButtons(e){
+setInterval(updatePacman, 25);
+$(document).click(function(){
+	addPacman();
+})
+
+function updateButtons(){
 	$.each($(".buttoncarrier"), function(index, carrier){
 		var tram = carrier.children[0];
 		var height = tram.clientHeight;
 		var width = tram.clientWidth;
-		var o = getCenterOffset(e, carrier);
+		var o = getCenterOffset(carrier);
 		
-		if(within(o.y, height + buttonTramBuffer*2) && within(o.x, width + buttonTramBuffer*2)){
+		if(o.y < height/2 + buttonTramBuffer && within(o.x, width + buttonTramBuffer*2)){
 			tram.style.top = Math.min(0, o.y - height/2 - buttonTramBuffer) + "px";
 		} else{
 			tram.style.top = 0;
@@ -26,8 +40,7 @@ function updateButtons(e){
 }
 
 ////////////////
-
-for(var i = 0; i < numPacman; i++){
+function addPacman(){
 	var pac = document.createElement("img");
 	pac.src = "media/pacman.gif";
 	pac.classList.add("turtle");
@@ -35,38 +48,49 @@ for(var i = 0; i < numPacman; i++){
 	pac.style.left = Math.random() * window.innerWidth + "px";
 	pac.setAttribute("data-velX", 0);
 	pac.setAttribute("data-velY", 0);
+	pac.setAttribute("width", pacManSize);
+	pac.setAttribute("height", pacManSize);
+//	pac.setAttribute("data-weight", Math.random() * (turtleWeightMax - turtleWeightMin) + turtleWeightMin);
 	$("body")[0].appendChild(pac);
 }
 
-function updatePacman(e){
+function updatePacman(){
 	$.each($(".turtle"), function(index, data){
-		var velX = parseFloat(data.getAttribute("data-velX"));
-		var velY = parseFloat(data.getAttribute("data-velY"));
-		
-		var distX = getCenterOffset(e, data).x;
-		var distY = getCenterOffset(e, data).y;
+		var weight = data.getAttribute("data-weight");
+		var distX = getCenterOffset(data).x;
+		var distY = getCenterOffset(data).y;
 		
 		var diag = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
 		
-//		var raw = -Math.atan(distY / distX);
-//		var heading = (raw * 180) / Math.PI;
-//		
-//		if(distX < 0){
-//			heading += 180;
-//		}
-//		
-//		if(distX >= 0 && distY >= 0){
-//			heading += 360;
-//		}
+		var xInc = Math.sin(distX / diag) || 0;	//Is sometimes NaN, just toss it then
+		var yInc = Math.sin(distY / diag) || 0;
+
+		var velX = bound(parseFloat(data.getAttribute("data-velX")), turtleLimit) + (Math.random() * turtleRand) - turtleRand/2;
+		var velY = bound(parseFloat(data.getAttribute("data-velY")), turtleLimit) + (Math.random() * turtleRand) - turtleRand/2;
 		
-		var xInc = Math.cos(diag);
-		var yInc = Math.sin(diag);
+		velX = approach(velX + xInc * turtleAccel, 0, turtleDecay);
+		velY = approach(velY + yInc * turtleAccel, 0, turtleDecay);
 		
-//		console.log(distX + "\tx\t" + distY + "\t@\t" + heading);
+		data.style.left = parseInt(data.style.left) + velX + "px";
+		data.style.top = parseInt(data.style.top) + velY + "px";
 		
-		data.setAttribute("data-velX", velX + xInc * turtleAccel);
-		data.setAttribute("data-velY", velY + yInc * turtleAccel);
+		data.setAttribute("data-velX", velX);
+		data.setAttribute("data-velY", velY);
 		
+		
+		
+		
+		
+		////////
+		
+		
+		
+		
+		var heading = (-Math.atan(distY / distX) * 180) / Math.PI;
+		if(distX < 0) heading += 180;
+		if(distX >= 0 && distY >= 0) heading += 360;
+		
+		$(data).css("transform", "rotate(" + -heading + "deg)");
 	});
 }
 
@@ -76,15 +100,9 @@ function pyth(a, b){
 	return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
 }
 
-function getCenterDistance(mouseEvent, elem){
-	var o = getCenterOffset(mouseEvent, elem);
-	return Math.sqrt(Math.pow(o.x, 2) + Math.pow(o.y, 2));
-}
-
-function getCenterOffset(mouseEvent, elem){
-	var x = Math.floor(mouseEvent.pageX - ($(elem).offset().left + parseInt($(elem).css("width"))/2));
-	
-	var y = Math.floor(mouseEvent.pageY - ($(elem).offset().top + parseInt($(elem).css("height"))/2));
+function getCenterOffset(elem){
+	var x = Math.floor(mouse.x - ($(elem).offset().left + parseInt($(elem).css("width"))/2));
+	var y = Math.floor(mouse.y - ($(elem).offset().top + parseInt($(elem).css("height"))/2));
 	
 	return {y, x};
 }
@@ -99,33 +117,54 @@ function within(val, x){
 }
 
 function sign(val){
-	if(val > 0){
-		return 1;
-	}
-	if(val < 0){
-		return -1;
-	}
-	
-	return 0;
+	if(val > 0) return 1;
+	if(val < 0) return -1;
+	return 1;	//error case
 }
 
 function map(x, in_min, in_max, out_min, out_max){
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-function signs(val){	//strict, never 0
+function signs(val){
 	if(val > 0){
 		return 1;
 	}
-	return -1;
+	if(val < 0){
+		return -1;
+	}
+	return 0;
 }
 
 function bound(val, a, b){
 	if(a < b){
-		var c = a;
-		a = b;
-		b = c;
+		if(val < a) return a;
+		if(val > b) return b;
 	}
 	
-	return Math.max(b, Math.min(a, val));
+	if(val < b) return b;
+	if(val > a) return a;
+	
+	return val;
+}
+
+function bound(val, a){
+	if(val < 0){
+		var c = -val;
+		return Math.min(Math.max(val, -a), a);
+	}
+	
+	return Math.max(-a, Math.min(a, val));
+}
+
+function approach(val, target, increment){
+	if(val < target){
+		val += increment;
+		if(val >= target) return target;
+	} else{
+		val -= increment;
+		if(val <= target) return target;
+	}
+	
+	return val;
 }
