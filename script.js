@@ -1,4 +1,4 @@
-var buttonTramBuffer = 5;
+var buttonTramBuffer = 25;
 
 //var turtleWeightMin = 0.9;
 //var turtleWeightMax = 1;
@@ -8,6 +8,8 @@ var turtleDecay = 0.01;
 var turtleRand = 0.3;
 
 var pacManSize = 50;
+
+var rainAccel = 1;
 
 ////////////////
 
@@ -20,6 +22,7 @@ $(document).mousemove(function(event) {
 });
 
 setInterval(updatePacman, 25);
+setInterval(updateWords, 25);
 $(document).click(function(){
 	addPacman();
 })
@@ -30,16 +33,28 @@ wrapWords();
 function wrapWords(){
 	$.each($(".rainText"), function(index, data){
 		var text = data.innerHTML;
+		data.innerHTML = "";
 		var last = 0;
+		
 		for(var i = 0; i < text.length; i++){
-			if(text.charAt(i)){
-				var word = text.substring(last, i) + " ";
-				var elem = document.createElement("div");
-				elem.classList.add("rain");
-				elem.innerHTML = word;
-				elem.style.color = "#f00";
+			if(text.charAt(i) == " " || i == text.length - 1){
+				var word = text.substring(last, i);
 				var outer = document.createElement("div");
+				var elem = document.createElement("div");
+		
+				if(i < text.length-2) word += "&nbsp;";
+				
+				elem.innerHTML = word;
+				
+				outer.classList.add("rainCarriage");
+				elem.classList.add("rainTram");
+				
 				outer.appendChild(elem);
+				$(outer).mouseover(function(e){
+					e.target.classList.add("rainTramActive");
+				});
+				
+				
 				data.appendChild(outer);
 				var last = i+1;
 			}
@@ -48,8 +63,17 @@ function wrapWords(){
 }
 
 function updateWords(){
-	
+	$.each($(".rainTramActive"), function(index, data){
+		var height = parseInt(data.style.top) || 0;
+		var vel = parseInt(data.getAttribute("data-vel")) || 0;
+		vel += rainAccel;
+		
+		data.style.top = height + vel + "px";
+		data.setAttribute("data-vel", vel);
+	});
 }
+
+////////////////
 
 function updateButtons(){
 	$.each($(".buttoncarrier"), function(index, carrier){
@@ -67,6 +91,7 @@ function updateButtons(){
 }
 
 ////////////////
+
 function addPacman(){
 	var pac = document.createElement("img");
 	pac.src = "media/pacman.gif";
@@ -77,7 +102,6 @@ function addPacman(){
 	pac.setAttribute("data-velY", 0);
 	pac.setAttribute("width", pacManSize);
 	pac.setAttribute("height", pacManSize);
-//	pac.setAttribute("data-weight", Math.random() * (turtleWeightMax - turtleWeightMin) + turtleWeightMin);
 	$("body")[0].appendChild(pac);
 }
 
