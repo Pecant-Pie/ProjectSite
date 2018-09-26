@@ -1,6 +1,7 @@
 *{
 	padding: 0px;
 	margin: 0px;
+	border: 0px;
 	-moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
      box-sizing: border-box; 
@@ -29,7 +30,6 @@ html{
 	width: 300px;
 	height: 300px;
 	margin: 30px;
-	display: block;
 }
 
 #topbar{
@@ -64,6 +64,7 @@ html{
 	border: 1px solid #0f0;
 }
 
+/*
 .buttontram:hover{
 	background-color: #777;
 }
@@ -71,6 +72,7 @@ html{
 .buttontram:active{
 	background-color: #555;
 }
+*/
 
 .buttoncarrier{
 /*	background-color: red;*/
@@ -90,15 +92,14 @@ html{
 
 .contentPane{
 	padding: 30px;
-	background-color: #aaa;
-	position: absolute;
-	height: 1200px;
+	background-color: #bbb;
+/*	position: absolute;*/
 	width: 800px;
 	margin-top: 130px;
 	margin-bottom: 30px;
 	border: 1px solid #0f0;
-	
 	overflow-y: hidden;
+	float: left;
 }
 
 .contentTitle{
@@ -115,8 +116,14 @@ hr{
 	margin-bottom: 20px;
 }
 
+.rainText{
+	color: #222;
+	font-size: 24px;
+	float: left;
+}
+
 .rainCarriage{
-	display: inline-block;
+	float: left;
 }
 
 .rainTram{

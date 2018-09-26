@@ -3,7 +3,7 @@ var buttonTramBuffer = 25;
 //var turtleWeightMin = 0.9;
 //var turtleWeightMax = 1;
 var turtleAccel = 2;	//per render frame
-var turtleLimit = 10;
+var turtleLimit = 20;
 var turtleDecay = 0.01;
 var turtleRand = 0.3;
 
@@ -23,6 +23,12 @@ $(document).mousemove(function(event) {
 
 setInterval(updatePacman, 25);
 setInterval(updateWords, 25);
+
+setInterval(function(){
+	var elems = $(".rainTram");
+	elems[Math.floor(Math.random() * elems.length)].classList.add("rainTramActive");
+}, 1000);
+
 $(document).click(function(){
 	addPacman();
 })
@@ -41,7 +47,7 @@ function wrapWords(){
 				var word = text.substring(last, i);
 				var outer = document.createElement("div");
 				var elem = document.createElement("div");
-		
+				
 				if(i < text.length-2) word += "&nbsp;";
 				
 				elem.innerHTML = word;
@@ -50,10 +56,9 @@ function wrapWords(){
 				elem.classList.add("rainTram");
 				
 				outer.appendChild(elem);
-				$(outer).mouseover(function(e){
+				$(elem).mouseover(function(e){
 					e.target.classList.add("rainTramActive");
 				});
-				
 				
 				data.appendChild(outer);
 				var last = i+1;
@@ -128,15 +133,8 @@ function updatePacman(){
 		data.setAttribute("data-velX", velX);
 		data.setAttribute("data-velY", velY);
 		
-		
-		
-		
-		
 		////////
-		
-		
-		
-		
+
 		var heading = (-Math.atan(distY / distX) * 180) / Math.PI;
 		if(distX < 0) heading += 180;
 		if(distX >= 0 && distY >= 0) heading += 360;
