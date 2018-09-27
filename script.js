@@ -11,6 +11,8 @@ var pacManSize = 50;
 
 var rainAccel = 1;
 
+var wordTilt = 5;
+
 ////////////////
 
 var mouse = { x: -1, y: -1 };
@@ -25,13 +27,17 @@ setInterval(updatePacman, 25);
 setInterval(updateWords, 25);
 
 setInterval(function(){
-	var elems = $(".rainTram");
-	elems[Math.floor(Math.random() * elems.length)].classList.add("rainTramActive");
+	var elems = $(".rainTramInactive");
+	var elem = $(".rainTramInactive")[Math.floor(Math.random() * $(".rainTramInactive").length)];
+	
+	elem.classList.add("rainTramActive");
+	elem.classList.remove("rainTramInactive");
 }, 1000);
 
 $(document).click(function(){
 	addPacman();
 })
+
 wrapWords();
 
 ////
@@ -53,11 +59,12 @@ function wrapWords(){
 				elem.innerHTML = word;
 				
 				outer.classList.add("rainCarriage");
-				elem.classList.add("rainTram");
+				elem.classList.add("rainTramInactive");
 				
 				outer.appendChild(elem);
 				$(elem).mouseover(function(e){
 					e.target.classList.add("rainTramActive");
+					e.target.classList.remove("rainTramInactive");
 				});
 				
 				data.appendChild(outer);
@@ -73,6 +80,9 @@ function updateWords(){
 		var vel = parseInt(data.getAttribute("data-vel")) || 0;
 		vel += rainAccel;
 		
+		var angle = parseInt(data.style.transform.substring(7)) || 0;
+		
+		data.style.transform = "rotate(" + (angle + wordTilt) + "deg)";
 		data.style.top = height + vel + "px";
 		data.setAttribute("data-vel", vel);
 	});
