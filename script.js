@@ -5,11 +5,13 @@ var buttonTramBuffer = 25;
 var turtleAccel = 2;	//per render frame
 var turtleLimit = 20;
 var turtleDecay = 0.01;
-var turtleRand = 0.3;
+var turtleRand = 4;
 
 var pacManSize = 50;
 
 var rainAccel = 1;
+
+var imageTilt = 10;
 
 ////////////////
 
@@ -21,8 +23,8 @@ $(document).mousemove(function(event) {
 	updateButtons();
 });
 
-setInterval(updatePacman, 25);
-setInterval(updateWords, 25);
+setInterval(updatePacman, 35);
+setInterval(updateWords, 45);
 
 setInterval(function(){
 	var elems = $(".rainTram");
@@ -33,6 +35,15 @@ $(document).click(function(){
 	addPacman();
 })
 wrapWords();
+
+$(".contentImg").mouseenter(function(e){
+	var angle = Math.floor(Math.random() * 4) * 90;
+	e.target.style.transform = "rotate(" + angle + "deg)";
+});
+
+$(".contentImg").mouseleave(function(e){
+	e.target.style.transform = "rotate(0deg)";
+});
 
 ////
 
@@ -121,11 +132,16 @@ function updatePacman(){
 		var xInc = Math.sin(distX / diag) || 0;	//Is sometimes NaN, just toss it then
 		var yInc = Math.sin(distY / diag) || 0;
 
-		var velX = bound(parseFloat(data.getAttribute("data-velX")), turtleLimit) + (Math.random() * turtleRand) - turtleRand/2;
-		var velY = bound(parseFloat(data.getAttribute("data-velY")), turtleLimit) + (Math.random() * turtleRand) - turtleRand/2;
+		var velX = parseFloat(data.getAttribute("data-velX"));
+		var velY = parseFloat(data.getAttribute("data-velY"));
 		
-		velX = approach(velX + xInc * turtleAccel, 0, turtleDecay);
-		velY = approach(velY + yInc * turtleAccel, 0, turtleDecay);
+		velX = approach(velX + xInc * turtleAccel, 0, turtleDecay) + (Math.random() * turtleRand - turtleRand / 2);	//Accelerate
+		velY = approach(velY + yInc * turtleAccel, 0, turtleDecay) + (Math.random() * turtleRand - turtleRand / 2);
+		
+		var ratio = Math.min(1.0, turtleLimit / pyth(velX, velY));	//Is it too fast?
+		
+		velX *= ratio;	//If so, reduce the overall vector by that ammount
+		velY *= ratio;
 		
 		data.style.left = parseInt(data.style.left) + velX + "px";
 		data.style.top = parseInt(data.style.top) + velY + "px";
