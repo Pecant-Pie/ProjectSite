@@ -10,9 +10,9 @@ var turtleRand = 4;
 var pacManSize = 50;
 
 var rainAccel = 1;
+var rainTilt = 2;
 
-var wordTilt = 5;
-var imageTilt = 10;
+//var imageTilt = 10;
 
 ////////////////
 
@@ -41,14 +41,14 @@ $(document).click(function(){
 
 wrapWords();
 
-$(".contentImg").mouseenter(function(e){
-	var angle = Math.floor(Math.random() * 4) * 90;
-	e.target.style.transform = "rotate(" + angle + "deg)";
-});
-
-$(".contentImg").mouseleave(function(e){
-	e.target.style.transform = "rotate(0deg)";
-});
+//$(".contentImg").mouseenter(function(e){
+//	var angle = Math.floor(Math.random() * 4) * 90;
+//	e.target.style.transform = "rotate(" + angle + "deg)";
+//});
+//
+//$(".contentImg").mouseleave(function(e){
+//	e.target.style.transform = "rotate(0deg)";
+//});
 
 ////
 
@@ -86,13 +86,20 @@ function wrapWords(){
 
 function updateWords(){
 	$.each($(".rainTramActive"), function(index, data){
+		
+		if($(data).offset().top > document.body.scrollHeight){
+//			console.log("Removed " + $(data).offset().top + " / " + document.body.scrollHeight);
+			$(data).removeClass("rainTramActive");	//Don't add deactive so it doesn't get reactivated
+			$(data).css("opacity", 0);
+		}
+		
 		var height = parseInt(data.style.top) || 0;
 		var vel = parseInt(data.getAttribute("data-vel")) || 0;
 		vel += rainAccel;
 		
-		var angle = parseInt(data.style.transform.substring(7)) || 0;
+		var angle = parseInt(data.style.transform.substring(7)) || (Math.random() * 0.01 - 0.005);
 		
-		data.style.transform = "rotate(" + (angle + wordTilt) + "deg)";
+		data.style.transform = "rotate(" + (angle + (rainTilt * Math.sign(angle))) + "deg)";
 		data.style.top = height + vel + "px";
 		data.setAttribute("data-vel", vel);
 	});
@@ -190,24 +197,8 @@ function within(val, x){
 	return false;
 }
 
-function sign(val){
-	if(val > 0) return 1;
-	if(val < 0) return -1;
-	return 1;	//error case
-}
-
 function map(x, in_min, in_max, out_min, out_max){
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
-
-function signs(val){
-	if(val > 0){
-		return 1;
-	}
-	if(val < 0){
-		return -1;
-	}
-	return 0;
 }
 
 function bound(val, a, b){

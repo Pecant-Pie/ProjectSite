@@ -54,6 +54,15 @@ html{
 	display: block;
 }
 
+.buttoncarrier{
+/*	background-color: red;*/
+	width: 150px;
+	height: 50px;
+	margin-left: 10px;
+	margin-right: 10px;
+	line-height: 22px;
+}
+
 .buttontram{
 	background-color: #666;
 	text-align: center;
@@ -61,25 +70,6 @@ html{
 	height: 100%;
 	position: relative;
 	border: 1px solid #0f0;
-}
-
-/*
-.buttontram:hover{
-	background-color: #777;
-}
-
-.buttontram:active{
-	background-color: #555;
-}
-*/
-
-.buttoncarrier{
-/*	background-color: red;*/
-	width: 150px;
-	height: 50px;
-	margin-left: 10px;
-	margin-right: 10px;
-	line-height: 50px;
 }
 
 .contentWrapper{
@@ -91,7 +81,7 @@ html{
 
 .contentPane{
 	padding: 30px;
-	background-color: #fff;
+	background-color: #aaa;
 /*	position: absolute;*/
 	width: 800px;
 	margin-top: 130px;
@@ -106,13 +96,18 @@ html{
 	text-align: center;
 	font-family: 'Roboto Mono', monospace;
 	background-color: #eee;
+/*	border: 1px solid #0f0;*/
+}
+
+.fancyTitle{
+	font-family: 'Pacifico', cursive;
 }
 
 hr{
 	height: 10px;
 	width: 100%;
 	
-	background-color: #000;
+	background-color: #303430;
 	
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -122,10 +117,11 @@ hr{
 .rainText{
 	color: #000;
 	font-size: 24px;
-	background-color: #999;
+	background-color: #fff;
 	padding: 30px;
 	display: block;
 	overflow: hidden;
+/*	border: 1px solid #0f0;*/
 }
 
 .rainCarriage{
