@@ -10,10 +10,25 @@
 body{
 	height: 100%;
 	background-color: #303430;
+	padding-top: 100px;
 }
 
 html{
 	height: 100%;
+}
+
+.watermark{
+	height: 40px;
+	padding: 10px;
+	position: fixed;
+	background-color: #444;
+	margin-left: -1px;
+	margin-bottom: -1px;
+	color: white;
+	bottom: 0px;
+	left: 0px;
+	font-family: 'Roboto Mono', monospace;
+	border: 1px solid #0f0; 
 }
 
 .turtle{
@@ -26,11 +41,6 @@ html{
     -ms-interpolation-mode: nearest-neighbor;
 }
 
-.contentImg{
-	height: 300px;
-	margin: 30px;
-}
-
 #topbar{
 	position: fixed;
 	top: 0px;
@@ -41,7 +51,7 @@ html{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	
+	border-bottom: 1px solid #0f0;
 	font-size: 20px;
 	font-family: 'Roboto Mono', monospace;
 }
@@ -52,6 +62,50 @@ html{
 	height: 100%;
 	width: 100%;
 	display: block;
+}
+
+.introBlock{
+	background-color: #aaa;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	font-size: 40px;
+	font-family: 'Roboto Mono', monospace;
+	margin-left: 80px;
+	margin-right: 80px;
+	border-left: 5px solid #fff;
+	border-right: 5px solid #fff;
+}
+
+.contentImg{
+	height: 300px;
+	float: left;
+}
+
+.imgPanel{
+	overflow: auto;
+	width: 100%;
+	padding: 10px;
+	background-color: #fff;
+	margin-top: 30px;
+	margin-bottom: 30px;
+/*	float: left;*/
+}
+
+.imgInfo{
+	margin: 10px;
+	float: left;
+}
+
+.titlePane{
+	padding: 20px;
+	background-color: #fff;
+/*	position: absolute;*/
+	width: 800px;
+	margin-top: 30px;
+	border: 1px solid #0f0;
+	overflow-y: hidden;
+	float: left;
 }
 
 .buttoncarrier{
@@ -84,18 +138,17 @@ html{
 	background-color: #aaa;
 /*	position: absolute;*/
 	width: 800px;
-	margin-top: 130px;
-	margin-bottom: 30px;
+	margin-top: 30px;
 	border: 1px solid #0f0;
 	overflow-y: hidden;
 	float: left;
 }
 
 .contentTitle{
-	font-size: 60px;
+	font-size: 20px;
 	text-align: center;
 	font-family: 'Roboto Mono', monospace;
-	background-color: #eee;
+/*	background-color: #aaa;*/
 /*	border: 1px solid #0f0;*/
 }
 
@@ -110,7 +163,7 @@ hr{
 	background-color: #303430;
 	
 	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 	display: block;
 }
 
@@ -121,6 +174,7 @@ hr{
 	padding: 30px;
 	display: block;
 	overflow: hidden;
+/*	float: right;*/
 /*	border: 1px solid #0f0;*/
 }
 

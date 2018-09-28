@@ -33,7 +33,7 @@ setInterval(function(){
 	
 	elem.classList.add("rainTramActive");
 	elem.classList.remove("rainTramInactive");
-}, 1000);
+}, 250);
 
 $(document).click(function(){
 	addPacman();
