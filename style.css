@@ -78,7 +78,7 @@ html{
 }
 
 .contentImg{
-	height: 300px;
+	width: 300px;
 	float: left;
 }
 
@@ -95,6 +95,9 @@ html{
 .imgInfo{
 	margin: 10px;
 	float: left;
+/*	background-color: #0f0;*/
+	max-width: 395px;
+	font-family: 'Roboto Mono', monospace;
 }
 
 .titlePane{
@@ -137,7 +140,7 @@ html{
 	padding: 30px;
 	background-color: #aaa;
 /*	position: absolute;*/
-	width: 800px;
+	width: 798px;
 	margin-top: 30px;
 	border: 1px solid #0f0;
 	overflow-y: hidden;
@@ -163,12 +166,26 @@ hr{
 	background-color: #303430;
 	
 	margin-top: 20px;
-	margin-bottom: 30px;
+	margin-bottom: 90px;
+	display: block;
+}
+
+.imgInfo hr{
+	height: 3px;
+	width: 100%;
+	
+	background-color: #aaa;
+	
+	margin-top: 20px;
+	margin-bottom: 90px;
 	display: block;
 }
 
 .rainText{
-	color: #000;
+	font-family: "Arial";
+}
+
+.textSection{
 	font-size: 24px;
 	background-color: #fff;
 	padding: 30px;

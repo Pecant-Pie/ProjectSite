@@ -25,7 +25,7 @@ $(document).mousemove(function(event) {
 });
 
 setInterval(updatePacman, 35);
-setInterval(updateWords, 45);
+setInterval(updateWords, 35);
 
 setInterval(function(){
 	var elems = $(".rainTramInactive");
@@ -60,7 +60,8 @@ function wrapWords(){
 		
 		for(var i = 0; i < text.length; i++){
 			if(text.charAt(i) == " " || i == text.length - 1){
-				var word = text.substring(last, i);
+				var word = text.substring(last, i+1);
+				
 				var outer = document.createElement("div");
 				var elem = document.createElement("div");
 				
