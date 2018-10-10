@@ -12,4 +12,5 @@
 .obstacle{
 	position: absolute;
 	background-color: #bbb;
+/*	border: 1px solid #fff;*/
 }

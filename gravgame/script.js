@@ -1,39 +1,51 @@
 var numObstaclesH = 16;
 var numObstaclesV = 16;
 
-var winHeight = 800;
+var winHeight = 600;
 var winWidth = 800;
 
 var obstacleWidth = winWidth / numObstaclesH;
 var obstacleHeight = winHeight / numObstaclesH;
 
 var obstacleDensity = 0.25;
+var obstacleSpeed = 10;
+var frameTim = 50;
 
 begin();
-setInterval(loop, 50);
+setInterval(loop, frameTime);
+
+setInterval(function(){
+	if(Math.random() < obstacleDensity){
+			$("#gameContainer").append(newObstacle(winWidth - obstacleWidth, 0));
+		}
+		
+		if(Math.random() < obstacleDensity){
+			$("#gameContainer").append(newObstacle(winWidth - obstacleWidth, winHeight - obstacleHeight));
+		}
+}, 250);
 
 function begin(){
 	$("#gameContainer").css("height", winHeight);
 	$("#gameContainer").css("width", winWidth);
 	
 	////////
-	
-	for(var i = 0; i < numObstaclesH; i++){
-		console.log("@ " + i + " & " + i * obstacleWidth);
-		if(Math.random() < obstacleDensity){
-			$("#gameContainer").append(newObstacle(i*obstacleWidth, 0));
-		}
-		
-		if(Math.random() < obstacleDensity){
-			$("#gameContainer").append(newObstacle(i*obstacleWidth, winHeight - obstacleHeight));
-		}
-	}
+//	
+//	for(var i = 0; i < numObstaclesH; i++){
+//		console.log("@ " + i + " & " + i * obstacleWidth);
+//		if(Math.random() < obstacleDensity){
+//			$("#gameContainer").append(newObstacle(i*obstacleWidth, 0));
+//		}
+//		
+//		if(Math.random() < obstacleDensity){
+//			$("#gameContainer").append(newObstacle(i*obstacleWidth, winHeight - obstacleHeight));
+//		}
+//	}
 }
 
 function loop(){
 	$.each($(".obstacle"), function(index, data){
 		var h = parseInt(data.style.left) || 0;
-		h -= 10;
+		h -= obstacleSpeed;
 		console.log(h);
 		
 		if(h < -obstacleWidth){
@@ -49,7 +61,7 @@ function newObstacle(x, y){
 	var e = document.createElement("div");
 	e.classList.add("obstacle");
 	e.style.height = obstacleHeight + "px";
-	e.style.height = obstacleWidth + "px";
+	e.style.width = obstacleWidth + "px";
 	e.style.left = x + "px";
 	e.style.top = y + "px";
 	return e;
