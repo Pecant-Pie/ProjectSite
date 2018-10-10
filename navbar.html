@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>
+            Simple Page
+        </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta charset="UTF-8">
+        <meta name="description" content="Jason's Simple Page">
+        <meta name="author" content="Jasonn Harriot">
+
+    </head>
+
+    <body>
+        <div class="header-wrapper">
+            <div class="header">
+                <div class="nav-item">
+                    <a customLink="index.html">
+                        Home
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a customLink="gagpage/index.html">
+                        Gag Page
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a customLink="macos_6.0.8_invisible_links.html">
+                        Mac OS<br>6.0.8
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a customLink="">
+						?
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a customLink="wj/index.html">
+                        WJ Page
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a customLink="rlgraphics.html">
+                        Rokt Leeg
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a customLink="">
+                        ?
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a customLink="cursornuke.html">
+                        Cursor Nuke
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var links = document.getElementsByTagName("a");
+
+            for(i of links){
+                var newLink = i.getAttribute("customLink");
+
+//                console.log("List Links: " + newLink);
+
+                i.addEventListener("click", function(){
+                    var thisLink = this.getAttribute("customLink");
+//                    console.log("New Link: " + thisLink);
+                    top.location.href = thisLink;
+                })
+            }
+        </script>
+    </body>
+</html>

@@ -1,209 +1,140 @@
 *{
-	padding: 0px;
-	margin: 0px;
-	border: 0px;
-	-moz-box-sizing: border-box; 
-    -webkit-box-sizing: border-box; 
-     box-sizing: border-box; 
+    margin: 0px;
+    padding: 0px;
+    font-family: "Arial";
+    line-height: 25px;
 }
 
 body{
-	height: 100%;
-	background-color: #303430;
-	padding-top: 100px;
+    margin: 120px 0px 0px 0px;
+    background-color: #000;
+    background-image: url("images/tibg1.png");
+    background-repeat: repeat;
+    background-size: 1080px;
+    background-attachment: fixed;
 }
 
-html{
-	height: 100%;
+/*the object*/
+.menu-bar{
+    margin: 0px 0px 0px 0px;
+    position: fixed;
+    top: 0px;
 }
 
-.watermark{
-	height: 40px;
-	padding: 10px;
-	position: fixed;
-	background-color: #444;
-	margin-left: -1px;
-	margin-bottom: -1px;
-	color: white;
-	bottom: 0px;
-	left: 0px;
-	font-family: 'Roboto Mono', monospace;
-	border: 1px solid #0f0; 
+/*The whole deal- bar and all*/
+.header-wrapper{
+    /*
+    position: fixed;
+    top: 0px;
+    */
+    width: 100%;
+    border-top: 20px solid #555;
+    margin: -120px 0px 0px 0px;
 }
 
-.turtle{
-	position: fixed;
-	image-rendering: optimizeSpeed;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: optimize-contrast;
-    image-rendering: pixelated;
-    -ms-interpolation-mode: nearest-neighbor;
+/*Just the 'button-box'*/
+.header{
+    width: 880px;
+    margin: 0px auto 0px auto;
 }
 
-#topbar{
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 100px;
-	background-color: #444;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-bottom: 1px solid #0f0;
-	font-size: 20px;
-	font-family: 'Roboto Mono', monospace;
+.nav-item{
+    display: table;
+    width: 100px;
+    height: 50px;
+
+    padding: 0px 10px 10px 10px;
+    margin: -10px 0px 0px -10px;
+    float: left;
+    text-align: center;
+    background-color: #555;
+
 }
 
-#topbar a{
-	color: #fff;
-	text-decoration: none;
-	height: 100%;
-	width: 100%;
-	display: block;
+.nav-item a{
+    display: table-cell;
+    vertical-align: middle;
+    line-height: 25px;
+    width: 100%;
+    font-size: 15px;
+    text-decoration: none;
+    color: #2f2;
+    cursor: pointer;
 }
 
-.introBlock{
-	background-color: #aaa;
-	height: 60px;
-	line-height: 60px;
-	text-align: center;
-	font-size: 40px;
-	font-family: 'Roboto Mono', monospace;
-	margin-left: 80px;
-	margin-right: 80px;
-	border-left: 5px solid #fff;
-	border-right: 5px solid #fff;
+.nav-item a:hover{
+    background-color: #2f2;
+    color: #555;
 }
 
-.contentImg{
-	width: 300px;
-	float: left;
+
+
+
+
+
+.block-wrapper{
+    width: 100%;
+    margin-bottom: 75px;
 }
 
-.imgPanel{
-	overflow: auto;
-	width: 100%;
-	padding: 10px;
-	background-color: #fff;
-	margin-top: 30px;
-	margin-bottom: 30px;
-/*	float: left;*/
+.block{
+    height: 500px;
+    width: 800px;
+    margin: 0px auto 0px auto;
 }
 
-.imgInfo{
-	margin: 10px;
-	float: left;
-/*	background-color: #0f0;*/
-	max-width: 395px;
-	font-family: 'Roboto Mono', monospace;
+.text-half{
+    width: 360px;
+    height: 360px;
+    background-color: #fff;
+    padding: 20px;
+    float: left;
 }
 
-.titlePane{
-	padding: 20px;
-	background-color: #fff;
-/*	position: absolute;*/
-	width: 800px;
-	margin-top: 30px;
-	border: 1px solid #0f0;
-	overflow-y: hidden;
-	float: left;
+.img-half{
+    width: 360px;
+    height: 360px;
+    float: left;
+    padding: 20px;
+    background-color: #555;
 }
 
-.buttoncarrier{
-/*	background-color: red;*/
-	width: 150px;
-	height: 50px;
-	margin-left: 10px;
-	margin-right: 10px;
-	line-height: 22px;
+.block-footer{
+    float: left;
+    color: #2f2;
+    width: 800px;
+    background-color: #555;
+    padding: 0px;
+    text-align: center;
 }
 
-.buttontram{
-	background-color: #666;
-	text-align: center;
-	width: 100%;
-	height: 100%;
-	position: relative;
-	border: 1px solid #0f0;
+.left{
+    float: left;
+    width: 180px;
+    padding: 0px 0px 0px 20px;
+    text-align: left;
 }
 
-.contentWrapper{
-	width: 100%;
-	display: flex;
-	position: relative;
-	justify-content: center;
+.center{
+    float: left;
+    width: 400px;
+    text-align: center;
 }
 
-.contentPane{
-	padding: 30px;
-	background-color: #aaa;
-/*	position: absolute;*/
-	width: 798px;
-	margin-top: 30px;
-	border: 1px solid #0f0;
-	overflow-y: hidden;
-	float: left;
+.right{
+    float: left;
+    width: 180px;
+    padding: 0px 20px 0px 0px;
+    text-align: right;
 }
 
-.contentTitle{
-	font-size: 20px;
-	text-align: center;
-	font-family: 'Roboto Mono', monospace;
-/*	background-color: #aaa;*/
-/*	border: 1px solid #0f0;*/
+.img{
+    width: 100%;
+    height: 100%;
 }
 
-.fancyTitle{
-	font-family: 'Pacifico', cursive;
-}
-
-hr{
-	height: 10px;
-	width: 100%;
-	
-	background-color: #303430;
-	
-	margin-top: 20px;
-	margin-bottom: 90px;
-	display: block;
-}
-
-.imgInfo hr{
-	height: 3px;
-	width: 100%;
-	
-	background-color: #aaa;
-	
-	margin-top: 20px;
-	margin-bottom: 90px;
-	display: block;
-}
-
-.rainText{
-	font-family: "Arial";
-}
-
-.textSection{
-	font-size: 24px;
-	background-color: #fff;
-	padding: 30px;
-	display: block;
-	overflow: hidden;
-/*	float: right;*/
-/*	border: 1px solid #0f0;*/
-}
-
-.rainCarriage{
-	float: left;
-}
-
-.rainTramInactive, .rainTramActive{
-	left: 0px;
-	width: 100%;
-	height: 100%;
-/*	color: #f00;*/
-	position: relative;
-/*	border: 1px solid black;*/
+.block-bookmark{
+    display: block;
+    position: relative;
+    top: -110px;
 }

@@ -1,0 +1,209 @@
+*{
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	-moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
+}
+
+body{
+	height: 100%;
+	background-color: #303430;
+	padding-top: 100px;
+}
+
+html{
+	height: 100%;
+}
+
+.watermark{
+	height: 40px;
+	padding: 10px;
+	position: fixed;
+	background-color: #444;
+	margin-left: -1px;
+	margin-bottom: -1px;
+	color: white;
+	bottom: 0px;
+	left: 0px;
+	font-family: 'Roboto Mono', monospace;
+	border: 1px solid #0f0; 
+}
+
+.turtle{
+	position: fixed;
+	image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+#topbar{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100px;
+	background-color: #444;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom: 1px solid #0f0;
+	font-size: 20px;
+	font-family: 'Roboto Mono', monospace;
+}
+
+#topbar a{
+	color: #fff;
+	text-decoration: none;
+	height: 100%;
+	width: 100%;
+	display: block;
+}
+
+.introBlock{
+	background-color: #aaa;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	font-size: 40px;
+	font-family: 'Roboto Mono', monospace;
+	margin-left: 80px;
+	margin-right: 80px;
+	border-left: 5px solid #fff;
+	border-right: 5px solid #fff;
+}
+
+.contentImg{
+	width: 300px;
+	float: left;
+}
+
+.imgPanel{
+	overflow: auto;
+	width: 100%;
+	padding: 10px;
+	background-color: #fff;
+	margin-top: 30px;
+	margin-bottom: 30px;
+/*	float: left;*/
+}
+
+.imgInfo{
+	margin: 10px;
+	float: left;
+/*	background-color: #0f0;*/
+	max-width: 395px;
+	font-family: 'Roboto Mono', monospace;
+}
+
+.titlePane{
+	padding: 20px;
+	background-color: #fff;
+/*	position: absolute;*/
+	width: 800px;
+	margin-top: 30px;
+	border: 1px solid #0f0;
+	overflow-y: hidden;
+	float: left;
+}
+
+.buttoncarrier{
+/*	background-color: red;*/
+	width: 150px;
+	height: 50px;
+	margin-left: 10px;
+	margin-right: 10px;
+	line-height: 22px;
+}
+
+.buttontram{
+	background-color: #666;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	border: 1px solid #0f0;
+}
+
+.contentWrapper{
+	width: 100%;
+	display: flex;
+	position: relative;
+	justify-content: center;
+}
+
+.contentPane{
+	padding: 30px;
+	background-color: #aaa;
+/*	position: absolute;*/
+	width: 798px;
+	margin-top: 30px;
+	border: 1px solid #0f0;
+	overflow-y: hidden;
+	float: left;
+}
+
+.contentTitle{
+	font-size: 20px;
+	text-align: center;
+	font-family: 'Roboto Mono', monospace;
+/*	background-color: #aaa;*/
+/*	border: 1px solid #0f0;*/
+}
+
+.fancyTitle{
+	font-family: 'Pacifico', cursive;
+}
+
+hr{
+	height: 10px;
+	width: 100%;
+	
+	background-color: #303430;
+	
+	margin-top: 20px;
+	margin-bottom: 90px;
+	display: block;
+}
+
+.imgInfo hr{
+	height: 3px;
+	width: 100%;
+	
+	background-color: #aaa;
+	
+	margin-top: 20px;
+	margin-bottom: 90px;
+	display: block;
+}
+
+.rainText{
+	font-family: "Arial";
+}
+
+.textSection{
+	font-size: 24px;
+	background-color: #fff;
+	padding: 30px;
+	display: block;
+	overflow: hidden;
+/*	float: right;*/
+/*	border: 1px solid #0f0;*/
+}
+
+.rainCarriage{
+	float: left;
+}
+
+.rainTramInactive, .rainTramActive{
+	left: 0px;
+	width: 100%;
+	height: 100%;
+/*	color: #f00;*/
+	position: relative;
+/*	border: 1px solid black;*/
+}
