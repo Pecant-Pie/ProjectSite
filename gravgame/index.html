@@ -5,25 +5,34 @@
 		<title>Site</title>
 		<link rel="stylesheet" href="style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
 	</head>
 	<body>
 		<div id="gameContainer">
-			<div id="startContainer">
-				<button id="start" type="text">START</button>
-			</div>
-			<div id="endContainer">
-				<div id="endTitle">
-					GAME
-					<br>
-					OVER
+			<div id="game" class="rBorder">
+				<div id="counter" class="rText">0</div>
+				<div id="startContainer" class="rBorder rText">
+					<button id="start" class="rBorder rText" type="text">START</button>
 				</div>
-				<div id="leaderboard">
+				<div id="endContainer">
+					<div id="endMenu">
+						<div id="endTitle" class="rBorder rText">
+							GAME
+							<br>
+							OVER
+						</div>
+						<button id="restart" class="rBorder rText">AGAIN?</button>
+						<div id="leaderboard" class="rBorder">
+							<div id="score" class="rText">
+							</div>
+							<div id="highscore" class="rText">
+							</div>
+						</div>
+					</div>
 				</div>
+				<div id="player" class="rBG"></div>
 			</div>
-			<div id="player"></div>
-			
 		</div>
-		
 		<script type="text/javascript" src="script.js"></script>
 	</body>
 </html>
