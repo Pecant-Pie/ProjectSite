@@ -10,7 +10,7 @@ var winWidth = 20 * obstacleWidth;
 var obstacleSpacing = 2; 	//n columns contain 1 obstacle
 
 var obstacleSpeed = 6;	//horizontal speed per loop
-var playerSpeed = 5;	//vertical speed per loop
+var playerSpeed = 5;	//vertical speed per playerLoop
 
 var frameTime = 10;	//loop time
 
@@ -61,7 +61,6 @@ function initGame(){
 	
 	chromize();
 	
-	
 	endGame = false;
 	score = 0;
 }
@@ -85,6 +84,7 @@ function loop(){
 		}
 		data.style.left = h + "px";
 	});
+	
 	var top = parseInt($("#player").css("top")) || 0;
 	top += playerSpeed;
 	if(top != Math.max(0, Math.min(winHeight - playerHeight, top))) endGame = true;
