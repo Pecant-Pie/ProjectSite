@@ -1,52 +1,48 @@
 var numObstaclesH = 16;
 var numObstaclesV = 16;
 
-var winHeight = 600;
-var winWidth = 800;
-
 var obstacleWidth = 40;
 var obstacleHeight = 40;
 
-var obstacleSpacing = 2 	//n columns contain 1 obstacle
-var obstacleSpeed = 6;
+var winHeight = 15 * obstacleHeight;	//must be even multiples for the treadmil to work smoothly
+var winWidth = 20 * obstacleWidth;
 
+var obstacleSpacing = 2; 	//n columns contain 1 obstacle
 
-var frameTime = 10;
+var obstacleSpeed = 6;	//horizontal speed per loop
+var playerSpeed = 5;	//vertical speed per loop
+
+var frameTime = 10;	//loop time
+
+var hueSpeed = .01;
 
 ////
-
-var playerSpeed = 6;
 
 var playerHeight = 20;
 var playerWidth = 20;
 
-var endGame;
 
-////
-
-var loopInterval;
-var obstacleInterval;
-
+////////	Flags
 var score = 0;
 var highscore = 0;
-
+var loopInterval;
+var endGame;
 var currentHue = 0;
-var hueSpeed = .0001;
+////////
+
 
 chromize();
+setInterval(chromize, 1000);
 $("#player").css("height", playerHeight);
 $("#player").css("width", playerWidth);
 
-$("#start").on("click", initGame);
+$(document).one("keydown", initGame);
 
 $("#endContainer").hide();
 $("#game").css("height", winHeight);
 $("#game").css("width", winWidth);
-$(document).keydown(function(){
-	playerSpeed *= -1;
-});
 
-$(document).mousedown(function(){
+$(document).keydown(function(){
 	playerSpeed *= -1;
 });
 
@@ -54,43 +50,44 @@ function initGame(){
 	$("#endContainer").hide();
 	$("#startContainer").hide();
 	$("#player").show();
-	clearInterval(loopInterval);
-	clearInterval(obstacleInterval);
+	
+	$("#player").css("top", winHeight/2 - obstacleHeight/2);
+	playerSpeed = -Math.abs(playerSpeed);
 	
 	loopInterval = setInterval(loop, frameTime);
-	obstacleInterval = setInterval(function(){
-//		console.log("added");
-		$("#game").append(newObstacle(winWidth, Math.random() * (winHeight - obstacleHeight)));
-	}, obstacleWidth / obstacleSpeed * frameTime * obstacleSpacing);
+	for(var x = 0; x < winWidth / (obstacleWidth * obstacleSpacing); x++){
+		$("#game").append(newObstacle(winWidth + (x * obstacleWidth * obstacleSpacing), Math.random() * (winHeight - obstacleHeight)));
+	}
+	
+	chromize();
+	
 	
 	endGame = false;
 	score = 0;
 }
 
 function loop(){
-	chromize();
 	
 	////
 	
 	$.each($(".obstacle"), function(index, data){
-	if(collide(document.getElementById("player").getBoundingClientRect(), data.getBoundingClientRect())){
+		if(collide(document.getElementById("player").getBoundingClientRect(), data.getBoundingClientRect())){
 			endGame = true;
 		}
 		
 		var h = parseInt(data.style.left) || 0;
 		h -= obstacleSpeed;
-//		console.log(h);
 		
-		if(h < -obstacleWidth){
-//			console.log("Poof!");
-			$(data).remove();
+		if(h <= -obstacleWidth){
+			$(data).css("top", Math.random() * (winHeight - obstacleHeight));
+			$(data).css("left", winWidth);
 			return;
 		}
 		data.style.left = h + "px";
 	});
 	var top = parseInt($("#player").css("top")) || 0;
 	top += playerSpeed;
-	top = Math.max(0, Math.min(winHeight - playerHeight, top));
+	if(top != Math.max(0, Math.min(winHeight - playerHeight, top))) endGame = true;
 
 	$("#player").css("top", top);
 	
@@ -99,7 +96,6 @@ function loop(){
 	
 	if(endGame){
 		clearInterval(loopInterval);
-		clearInterval(obstacleInterval);
 		$.each($(".obstacle"), function(index, data){
 			$(data).remove();
 		});
@@ -114,13 +110,9 @@ function loop(){
 
 		setTimeout(function(){
 			$(document).one("keydown", function(e){
-				$("#restart").click();
+				initGame();
 			});
 		}, 250);
-		
-		$("#restart").on("click", function(e){
-			initGame();
-		});
 	}
 }
 
@@ -128,7 +120,6 @@ function loop(){
 function chromize(){
 	var rgb = HSVtoRGB(currentHue, 1, 1);
 	
-	console.log(rgb);
 	
 	$.each($(".rBorder"), function(index, data){
 		$(data).css("border", "1px solid rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")");
