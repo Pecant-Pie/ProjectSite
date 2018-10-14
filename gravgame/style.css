@@ -47,6 +47,10 @@ body{
 	position: absolute;
 	background-color: #fff;
 /*	border: 1px solid #fff;*/
+	height: 20px;
+	width: 20px;
+	
+	left: 150px;
 }
 
 #endContainer{
