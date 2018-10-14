@@ -1,125 +1,165 @@
-var numObstaclesH = 16;
-var numObstaclesV = 16;
+//Copyright 2018 Jason Harriot
 
 var obstacleWidth = 40;
 var obstacleHeight = 40;
+var obstacleSpacing = 2; 	//WHOLE NUMBER
+var obstacleSpeed = .5;	//pixels / ms
 
-var winHeight = 15 * obstacleHeight;	//must be even multiples for the treadmil to work smoothly
-var winWidth = 20 * obstacleWidth;
+var obstaclesH = 9;
+var obstaclesV = 7;
 
-var obstacleSpacing = 2; 	//n columns contain 1 obstacle
+var game = $("#game");
+game.css("height", obstaclesV * obstacleHeight * obstacleSpacing);
+game.css("width", obstaclesH * obstacleWidth * obstacleSpacing + obstacleWidth);
 
-var obstacleSpeed = 6;	//horizontal speed per loop
-var playerSpeed = 5;	//vertical speed per playerLoop
+var obstacleDuration = (game.width() + obstacleWidth) / (obstacleSpeed);
 
-var frameTime = 10;	//loop time
+var player = $("#player");
+playerSpeed = .5;	//vertical speed per playerLoop
 
-var hueSpeed = .01;
+var frameTime = 20;	//collision loop time TODO: fix phasing
+var hueSpeed = .005;	//needs more RGB
+
+
+
+
+
+//
+
+
+var score = 0;
+var highscore = 0;
+var obstacleInterval;
+var scoreInterval;
+var loopInterval;
+var currentHue = 0;
+
+
+
+
+colorize();
+setInterval(colorize, 250);
+
+
+
+
+$(document).on("keydown", function(){
+	$("body").css("cursor", "none");
+});
+$(document).on("mousemove", function(){
+	$("body").css("cursor", "default");
+});
+
+
+
+
+$("#endContainer").hide();
 
 ////
 
-var playerHeight = 20;
-var playerWidth = 20;
-
-
-////////	Flags
-var score = 0;
-var highscore = 0;
-var loopInterval;
-var endGame;
-var currentHue = 0;
-////////
-
-
-chromize();
-setInterval(chromize, 1000);
-$("#player").css("height", playerHeight);
-$("#player").css("width", playerWidth);
-
 $(document).one("keydown", initGame);
-
-$("#endContainer").hide();
-$("#game").css("height", winHeight);
-$("#game").css("width", winWidth);
-
-$(document).keydown(function(){
-	playerSpeed *= -1;
-});
 
 function initGame(){
 	$("#endContainer").hide();
 	$("#startContainer").hide();
-	$("#player").show();
 	
-	$("#player").css("top", winHeight/2 - obstacleHeight/2);
-	playerSpeed = -Math.abs(playerSpeed);
+	player.css("top", game.height()/2 - obstacleHeight/2);
+	player.show();
+	
+	$(".obstacle").each(function(index, data){
+		$(data).remove();
+	});
+	
+	colorize();
+	
+	playerSpeed = Math.abs(playerSpeed);
+	score = 0;
+	
+	obstacleInterval = setInterval(function(){
+		var b = newObstacle(game.width(), Math.random() * (game.height() - obstacleHeight));
+
+		game.append(b);
+		colorize();
+	}, (obstacleWidth * obstacleSpacing) / obstacleSpeed);
+	
+	$(document).keydown(movePlayer);
+	
+	movePlayer();
 	
 	loopInterval = setInterval(loop, frameTime);
-	for(var x = 0; x < winWidth / (obstacleWidth * obstacleSpacing); x++){
-		$("#game").append(newObstacle(winWidth + (x * obstacleWidth * obstacleSpacing), Math.random() * (winHeight - obstacleHeight)));
-	}
-	
-	chromize();
-	
-	endGame = false;
-	score = 0;
+	scoreInterval = setInterval(function(){
+		score++;
+		$("#counter").text(score);
+	}, 100);
 }
 
 function loop(){
-	
-	////
-	
-	$.each($(".obstacle"), function(index, data){
-		if(collide(document.getElementById("player").getBoundingClientRect(), data.getBoundingClientRect())){
-			endGame = true;
+	$(".obstacle").each(function(index, data){
+		if($(this).position().left < player.position().left + player.width()){	//progressive hit scan (saves some CPU? Maybe?)
+			if($(this).position().left + obstacleWidth > player.position().left){
+				if($(this).position().top < player.position().top + player.height()){
+					if($(this).position().top + obstacleWidth > player.position().top){
+						$(this).data("hit", "true");
+						endGame();
+					}
+				}
+			}
 		}
-		
-		var h = parseInt(data.style.left) || 0;
-		h -= obstacleSpeed;
-		
-		if(h <= -obstacleWidth){
-			$(data).css("top", Math.random() * (winHeight - obstacleHeight));
-			$(data).css("left", winWidth);
-			return;
-		}
-		data.style.left = h + "px";
 	});
-	
-	var top = parseInt($("#player").css("top")) || 0;
-	top += playerSpeed;
-	if(top != Math.max(0, Math.min(winHeight - playerHeight, top))) endGame = true;
-
-	$("#player").css("top", top);
-	
-	score++;
-	$("#counter").html(score);
-	
-	if(endGame){
-		clearInterval(loopInterval);
-		$.each($(".obstacle"), function(index, data){
-			$(data).remove();
-		});
-		$("#player").hide();
-		
-		highscore = Math.max(score, highscore);
-		
-		$("#score").html("SCORE: " + score)
-		$("#highscore").html("HIGHSCORE: " + highscore);
-		
-		$("#endContainer").show();
-
-		setTimeout(function(){
-			$(document).one("keydown", function(e){
-				initGame();
-			});
-		}, 250);
-	}
 }
 
+function movePlayer(){
+	player.stop();
+	var top = player.position().top;
+	var duration = 0;
+	var distance;
 
-function chromize(){
-	var rgb = HSVtoRGB(currentHue, 1, 1);
+	if(playerSpeed > 0) distance = game.height() - (top + player.height());
+	else distance = -top;
+
+	duration = Math.abs(distance / playerSpeed);
+
+	player.animate({
+		top: "+=" + distance
+	}, duration, "linear", function(){
+		endGame();
+	});
+
+	playerSpeed *= -1;
+}
+
+function endGame(){
+	$(document).off("keydown");
 	
+	player.stop();
+	
+	clearInterval(loopInterval);
+	clearInterval(scoreInterval);
+	clearInterval(obstacleInterval);
+	
+	$(".obstacle").each(function(index, data){
+		var obj = $(data);
+		obj.stop();
+		if(!obj.data("hit")) obj.remove();
+	});
+//	player.hide();
+
+	highscore = Math.max(score, highscore);
+
+	$("#score").text("SCORE: " + score)
+	$("#highscore").text("HIGHSCORE: " + highscore);
+
+	$("#endContainer").show();
+
+	setTimeout(function(){
+		$(document).one("keydown", function(e){
+			initGame();
+		});
+	}, 250);
+}
+
+function colorize(){
+	var rgb = HSVtoRGB(currentHue, 1, 1);
 	
 	$.each($(".rBorder"), function(index, data){
 		$(data).css("border", "1px solid rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")");
@@ -170,9 +210,13 @@ function newObstacle(x, y){
 	e.style.width = obstacleWidth + "px";
 	e.style.left = x + "px";
 	e.style.top = y + "px";
+	
+	$(e).animate({
+		left: "-=" + (game.width() + obstacleWidth)
+		},
+		obstacleDuration, "linear", function(){
+			$(this).remove();
+		});
+	
 	return e;
-}
-
-function collide(a, b) {
-	return a.left < b.left + b.width  && a.left + a.width  > b.left && a.top < b.top + b.height && a.top + a.height > b.top;
 }
