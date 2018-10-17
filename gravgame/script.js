@@ -32,7 +32,7 @@ var highscore = 0;
 var obstacleInterval;
 var scoreInterval;
 var loopInterval;
-var currentHue = 0;
+var currentHue = Math.random();
 
 
 
