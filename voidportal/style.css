@@ -1,0 +1,16 @@
+body{
+	padding: 0px;
+	margin: 0px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #f00;
+}
+
+.node{
+	background-color: #555;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
