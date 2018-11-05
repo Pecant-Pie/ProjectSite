@@ -23,7 +23,6 @@ var mouse = {
 };
 
 document.addEventListener("keydown", function(e){
-	// console.log(e.key);
 	if(e.key === " "){
 		if(loopInterval != null){
 			clearInterval(loopInterval);
@@ -43,7 +42,6 @@ function loop(){
 	var xdist = Math.abs(turtle.x - mouse.x) / Math.max(Math.abs(turtle.x - mouse.x), Math.abs(turtle.y - mouse.y));
 	var ydist = Math.abs(turtle.y - mouse.y) / Math.max(Math.abs(turtle.x - mouse.x), Math.abs(turtle.y - mouse.y));
 
-	// console.log(xdist + " " + ydist);
 	var dist = Math.abs(xdist) + Math.abs(ydist);
 
 	if(mouse.x < turtle.x){
@@ -81,7 +79,6 @@ var pos = {
 function updateMouse(e){
 	mouse.x = e.clientX;
 	mouse.y = e.clientY;
-	// console.log(mouse);
 }
 
 function setPosition(e) {
@@ -92,7 +89,6 @@ function setPosition(e) {
 function draw(e) {
 	var color = "hsl(" + hue + "," + 100 + "%," + 50 + "%)";
 	hue += hueV;
-
 
 	ctx.beginPath();
 
