@@ -6,15 +6,13 @@ var size = 10;
 var hue = 0;
 var hueV = 2;
 
-var acc = 10;
+var speed = 3;
 
 var turtle = {
 	x: 0,
 	y: 0,
 	lx: 0,
-	ly: 0,
-	vx: 0,
-	vy: 0
+	ly: 0
 };
 
 var mouse = {
@@ -34,30 +32,34 @@ document.addEventListener("keydown", function(e){
 });
 
 var loopInterval;
-loopInterval = setInterval(loop, 50);
+loopInterval = setInterval(loop, 25);
 
 function loop(){
-	//////// VVV BROKEN PHYSICS VVV (but they work a little)
+	var xDist = mouse.x - turtle.x;
+	var yDist = mouse.y - turtle.y;
+	var angle = (Math.atan(Math.abs(yDist / xDist))) / (2 * Math.PI) * 360;
 
-	var xdist = Math.abs(turtle.x - mouse.x) / Math.max(Math.abs(turtle.x - mouse.x), Math.abs(turtle.y - mouse.y));
-	var ydist = Math.abs(turtle.y - mouse.y) / Math.max(Math.abs(turtle.x - mouse.x), Math.abs(turtle.y - mouse.y));
-
-	var dist = Math.abs(xdist) + Math.abs(ydist);
-
-	if(mouse.x < turtle.x){
-		turtle.vx -= (xdist / dist) * acc;
-	} else{
-		turtle.vx += (xdist / dist) * acc;
+	if(xDist == 0 && yDist == 0){
+		return;
 	}
-	if(mouse.y < turtle.y){
-		turtle.vy -= (ydist / dist) * acc;
-	} else{
-		turtle.vy += (ydist / dist) * acc;
+	if(xDist >= 0 && yDist > 0){
+		angle = 360 - angle;
 	}
+	if(xDist < 0 && yDist >= 0){
+		angle = 180 + angle;
+	}
+	if(xDist <= 0 && yDist < 0){
+		angle = 180 - angle;
+	}
+	if(xDist > 0 && yDist <= 0){
+		// angle = angle;
+	}
+
 	turtle.lx = turtle.x;
 	turtle.ly = turtle.y;
-	turtle.x += turtle.vx;
-	turtle.y += turtle.vy;
+
+	turtle.x += Math.max(Math.min(Math.abs(xDist), Math.cos(angle / 360 * 2 * Math.PI) * speed), -Math.abs(xDist));	//The turtle shall not move further than the mouse cursor.
+	turtle.y -= Math.max(Math.min(Math.abs(yDist), Math.sin(angle / 360 * 2 * Math.PI) * speed), -Math.abs(yDist));
 
 	draw();
 }
@@ -68,7 +70,6 @@ function resize() {
 }
 resize();
 
-window.addEventListener("resize", resize);
 document.addEventListener("mousemove", updateMouse);
 
 var pos = {
