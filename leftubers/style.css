@@ -1,0 +1,141 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	font-family: "Arial";
+	font-size: 20px;
+	list-style-image: url("media/ul.png");
+}
+
+html{
+	margin: 0px;
+}
+
+body{
+	margin: 0px;
+	background-color: #eee;
+}
+
+#container{
+}
+
+#headerContainer{
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+
+	display: flex;
+	justify-content: center;
+}
+	#header{
+		width: 800px;
+		border: 1px solid #0f0;
+		background-color: #fff;
+	}
+		#leftButtonContainer{
+			position: absolute;
+			border: 1px solid #00f;
+		}
+			#homeButton{
+				width: 40px;
+				height: 40px;
+				border: 1px solid #f00;
+			}
+			#backButton{
+				width: 40px;
+				height: 40px;
+				border: 1px solid #f00;
+			}
+		#headerLogoContainer{
+			display: flex;
+			justify-content: center;
+			border: 1px solid #00f;
+		}
+			#headerLogo{
+				font-family: "Jura";
+				font-size: 50px;
+				height: 50px;
+				border: 1px solid #f00;
+			}
+
+#bodyContainer{
+	display: flex;
+	flex-direction: column;
+	padding: 70px;
+}
+	#introPanel{
+		border: 1px solid #0f0;
+		background-color: #fff;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+		#title{
+			margin: 5px;
+			border: 1px solid #00f;
+			font-family: 'Roboto Mono';
+		}
+		#intro{
+			margin: 5px;
+			border: 1px solid #00f;
+			font-family: 'Roboto Mono';
+		}
+	#appSlidesContainer{
+		border: 1px solid #0f0;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row;
+	}
+		#leftSlideContainer{
+			border: 1px solid #00f;
+			flex-grow: 1;
+			flex-basis: 0;	/* Set to 0, act like it has zero width to start */
+			background-color: #eee;
+			font-family: 'Arial';
+			font-style: 'italic';
+			padding: 30px;
+		}
+			#leftSlide{
+
+			}
+		#appSlides{
+			border: 1px solid #00f;
+			display: flex;
+			justify-content: center;
+		}
+			.appImage{
+				height: 400px;
+				margin: 30px;
+			}
+		#rightSlideContainer{
+			border: 1px solid #00f;
+			flex-grow: 1;
+			flex-basis: 0;
+			padding: 30px;
+		}
+			#rightSlide{
+
+			}
+	#outroPanel{
+		text-align: center;
+		border: 1px solid #0f0;
+	}
+		.footerText{
+			border: 1px solid #00f;
+		}
+		.footerHR{
+			border: none;
+			background-color: #000;
+			height: 2px;
+		}
+#legalContainer{
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+}
+	#legal{
+		border: 1px solid #0f0;
+		font-size: 10px;
+		font-style: italic;
+		text-align: center;
+	}
