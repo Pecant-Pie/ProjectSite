@@ -34,7 +34,7 @@ body{
 
 /*Just the 'button-box'*/
 .header{
-    width: 880px;
+    width: 990px;	/*TODO: Fix this non-dynamic mess*/
     margin: 0px auto 0px auto;
 }
 

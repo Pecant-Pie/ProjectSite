@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Site</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:300|Jura:300|Khula:300|Roboto+Mono" rel="stylesheet">
+	</head>
+	<body>
+		<div id="container">
+			<div id="headerContainer">
+				<div id="header">
+						<div id="leftButtonContainer">
+							<img src="media/back.png" id="backButton">
+							<!-- <img src="media/home.png" id="homeButton"> -->
+						</div>
+						<div id="headerLogoContainer">
+							<div id="headerLogo">
+								LeftUbers
+							</div>
+						</div>
+						<div id="rightButtonContainer">
+						</div>
+				</div>
+			</div>
+			<div id="bodyContainer">
+				<div id="body">
+					<div id="introPanel">
+						<div id="title">
+							Stop wasting - start eating
+						</div>
+						<div id="intro">
+							LeftUbers is breakthrough in on-demand food delivery. Have delicious food delivered fast, and never throw out another meal.
+						</div>
+					</div>
+					<hr class="divHR">
+					<div id="appSlidesContainer">
+						<div id="leftSlideContainer">
+							<div id="leftSlide">
+								<div id="downloadTitle">
+									Download Now
+								</div>
+								<img src="media/appstore.svg" class="downloadBadge">
+								<img src="media/googleplay.png" class="downloadBadge">
+							</div>
+						</div>
+						<div id="appSlides">
+							<img src="media/app1.png" class="appImage">
+							<img src="media/app2.png" class="appImage">
+							<img src="media/app3.png" class="appImage">
+						</div>
+						<!-- <div id="rightSlideContainer">
+							<div id="rightSlide">
+							</div>
+						</div> -->
+					</div>
+					<hr class="divHR">
+					<div id="mapPanel">
+						<div id="mapContainer">
+							<div id="searchTitle">
+								Enter your ZIP code to find some munchies
+							</div>
+							<div id="searchControls">
+								<input type="number" min="0" max="99999" id="searchBar">
+								<button id="searchButton">
+									Find food
+								</button>
+							</div>
+
+							<iframe id="map" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=New%20york&key=AIzaSyCQX_ULet8FlQkAbgrixwKjXJ-oDFghYws" allowfullscreen></iframe>
+						</div>
+					</div>
+					<hr class="divHR">
+				</div>
+			</div>
+			<div id="legalContainer">
+				<div id="legal">
+					&copy; nobody 2055
+					<br>
+					No rights not reserved
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="script.js"></script>
+	</body>
+</html>
