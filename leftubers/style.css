@@ -6,6 +6,10 @@
 	/* list-style-image: url("media/ul.png"); */
 }
 
+img{
+	display: block;
+}
+
 html{
 	margin: 0px;
 	padding: 0px
@@ -14,7 +18,15 @@ html{
 body{
 	margin: 0px;
 	padding: 0px;
-	background-color: #eee;
+	background-color: #f30;
+}
+
+.divHR{
+	border: none;
+	background-color: #fff;
+	height: 2px;
+	margin-top: 3px;
+	margin-bottom: 50px;
 }
 
 #container{
@@ -35,40 +47,38 @@ body{
 	#header{
 		width: 500px;
 		/* border: 1px solid #0f0; */
-		border-bottom: 3px solid #000;
-		border-left: 3px solid #000;
-		border-right: 3px solid #000;
+		border: 3px solid #000;
+		border-top: none;
 		background-color: #fff;
+
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 		#leftButtonContainer{
-			position: absolute;
-			/* border: 1px solid #00f; */
+			height: 40px;
+			width: 40px;
 		}
-			#homeButton{
-				width: 40px;
-				height: 40px;
-				/* border: 1px solid #f00; */
-			}
 			#backButton{
-				width: 40px;
-				height: 40px;
-				/* border: 1px solid #f00; */
+				height: 100%;
 			}
 			#backButton:hover{
-				background-color: #bbb;
+				background-color: #ddd;
 			}
 		#headerLogoContainer{
-			display: flex;
-			justify-content: center;
-			/* border: 1px solid #00f; */
 		}
 			#headerLogo{
 				font-family: "Jura";
 				font-size: 50px;
 				height: 50px;
 				line-height: 50px;
+				color: #f30;
+				font-weight: bold;
 				/* border: 1px solid #f00; */
 			}
+		#rightButtonContainer{
+			width: 40px;
+		}
 
 #bodyContainer{
 	display: flex;
@@ -88,14 +98,12 @@ body{
 			display: flex;
 			justify-content: center;
 			flex-direction: column;
-
-			margin-bottom: 30px;
 		}
 			#title{
 				margin: 5px;
-				/* border: 1px solid #00f; */
 				font-family: 'Roboto Mono';
 				text-align: center;
+				font-weight: bold;
 			}
 			#intro{
 				margin: 5px;
@@ -108,8 +116,6 @@ body{
 			display: flex;
 			justify-content: space-between;
 			flex-direction: row;
-
-			margin-bottom: 30px;
 		}
 			#leftSlideContainer{
 				flex-grow: 1;
@@ -122,15 +128,20 @@ body{
 			}
 				#leftSlide{
 					display: flex;
-					justify-content: middle;
+					align-items: center;
 					flex-direction: column;
 				}
 					#downloadTitle{
-						background-color: #fff;
+						background-color: #f30;
 						padding: 10px;
+						color: #fff;
+						margin-bottom: 10px;
+						font-size: 30px;
+						font-weight: bold;
 					}
 					.downloadBadge{
 						width: 200px;
+						margin-bottom: 10px;
 					}
 			#appSlides{
 				/* border: 1px solid #00f; */
@@ -142,7 +153,6 @@ body{
 					height: 300px;
 					margin: 30px;
 					margin-left: 0px;
-					display: block;
 
 				}
 			#rightSlideContainer{
@@ -155,28 +165,61 @@ body{
 				#rightSlide{
 
 				}
-	#outroPanel{
-		text-align: center;
+	#mapPanel{
+		background-color: #fff;
 		/* border: 1px solid #0f0; */
+		padding: 30px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
-		.footerText{
-			/* border: 1px solid #00f; */
+		#mapContainer{
+			padding: 10px;
+			background-color: #ddd;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
-		.footerHR{
-			border: none;
-			background-color: #000;
-			height: 2px;
-			margin-top: 11px;
-			margin-bottom: 10px;
-		}
+			#searchTitle{
+				font-style: italic;
+				margin-bottom: 10px;
+			}
+			#searchControls{
+				margin-bottom: 10px;
+			}
+				#searchBar{
+					border: none;
+					background-color: #fff;
+					border: 1px solid #000;
+					width: 100px;
+				}
+				#searchButton{
+					border: none;
+					background-color: #f30;
+					padding: 5px;
+					color: #fff;
+				}
+				#searchButton:active{
+					border: none;
+					background-color: #d10;
+					padding: 5px;
+				}
+			#map{
+				border: 1px solid #fff;
+			}
+	#footerText{
+		background-color: #fff;
+		padding: 10px;
+	}
 #legalContainer{
 	display: flex;
 	justify-content: center;
 	padding: 20px;
 }
 	#legal{
-		border-left: 1px solid #000;
-		border-right: 1px solid #000;
+		color: #fff;
+		border-left: 2px solid #fff;
+		border-right: 2px solid #fff;
 		font-size: 15px;
 		font-style: italic;
 		text-align: center;
