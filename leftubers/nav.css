@@ -1,0 +1,60 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+
+body{
+}
+
+html{
+}
+
+.butt:hover{
+	cursor: pointer;
+}
+
+#container{
+	display: flex;
+	justify-content: center;
+}
+	#header{
+		width: 500px;
+		border: 3px solid #000;
+		border-top: none;
+		background-color: #fff;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+		/* #leftButtonContainer{
+			height: 40px;
+			width: 40px;
+		}
+			#home{
+				height: 100%;
+			}
+			#home:hover{
+				background-color: #ddd;
+			}
+		#headerLogoContainer{
+
+		} */
+			#headerLogo{
+				font-family: "Jura";
+				font-size: 50px;
+				height: 50px;
+				line-height: 50px;
+				color: #c42700;
+				font-weight: bold;
+			}
+		/* #rightButtonContainer{
+			height: 40px;
+			width: 40px;
+		}
+			#alt{
+				height: 100%;
+			}
+			#alt:hover{
+				background-color: #ddd;
+			} */

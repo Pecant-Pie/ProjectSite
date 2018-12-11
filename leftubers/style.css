@@ -3,7 +3,6 @@
 	padding: 0px;
 	font-family: "Arial";
 	font-size: 20px;
-	/* list-style-image: url("media/ul.png"); */
 }
 
 img{
@@ -12,13 +11,13 @@ img{
 
 html{
 	margin: 0px;
-	padding: 0px
+	padding: 0px;
 }
 
 body{
 	margin: 0px;
 	padding: 0px;
-	background-color: #f30;
+	background-color: #c42700;
 }
 
 .divHR{
@@ -29,61 +28,31 @@ body{
 	margin-bottom: 50px;
 }
 
+#navEmbed{
+	width: 100%;
+	height: 54px;
+}
+
 #container{
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 }
 
-#headerContainer{
-	width: 100%;
+#navContainer{
 	position: fixed;
-	top: 0px;
 	left: 0px;
+	top: 0px;
+
+	width: 100%;
 
 	display: flex;
 	justify-content: center;
 }
-	#header{
-		width: 500px;
-		/* border: 1px solid #0f0; */
-		border: 3px solid #000;
-		border-top: none;
-		background-color: #fff;
-
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-		#leftButtonContainer{
-			height: 40px;
-			width: 40px;
-		}
-			#backButton{
-				height: 100%;
-			}
-			#backButton:hover{
-				background-color: #ddd;
-			}
-		#headerLogoContainer{
-		}
-			#headerLogo{
-				font-family: "Jura";
-				font-size: 50px;
-				height: 50px;
-				line-height: 50px;
-				color: #f30;
-				font-weight: bold;
-				/* border: 1px solid #f00; */
-			}
-		#rightButtonContainer{
-			width: 40px;
-		}
 
 #bodyContainer{
 	display: flex;
 	justify-content: center;
-
 }
 	#body{
 		padding-top: 80px;
@@ -93,7 +62,6 @@ body{
 		width: 1000px;
 	}
 		#introPanel{
-			/* border: 1px solid #0f0; */
 			background-color: #fff;
 			display: flex;
 			justify-content: center;
@@ -105,12 +73,33 @@ body{
 				text-align: center;
 				font-weight: bold;
 			}
-			#intro{
-				margin: 5px;
-				/* border: 1px solid #00f; */
-				font-family: 'Roboto Mono';
-				text-align: center;
+			#introContentContainer{
+				display: flex;
+				flex-direction: row;
+				margin: 30px;
 			}
+				#intro{
+					font-family: 'Roboto Mono';
+					text-align: center;
+				}
+					.introBold{
+						font-size: 30px;
+						font-weight: bold;
+					}
+				#altButton{
+					width: 400px;
+					background-color: #c42700;
+					color: #fff;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					cursor: pointer;
+					border: none;
+					margin: 10px;
+				}
+				#altButton:active{
+					background-color: #000;
+				}
 		#appSlidesContainer{
 			background-color: #fff;
 			display: flex;
@@ -119,7 +108,7 @@ body{
 		}
 			#leftSlideContainer{
 				flex-grow: 1;
-				flex-basis: 0;	/* Set to 0, act like it has zero width to start */
+				flex-basis: 0;
 				background-color: #ddd;
 				font-family: 'Arial';
 				font-style: 'italic';
@@ -132,7 +121,7 @@ body{
 					flex-direction: column;
 				}
 					#downloadTitle{
-						background-color: #f30;
+						background-color: #c42700;
 						padding: 10px;
 						color: #fff;
 						margin-bottom: 10px;
@@ -142,9 +131,9 @@ body{
 					.downloadBadge{
 						width: 200px;
 						margin-bottom: 10px;
+						cursor: pointer;
 					}
 			#appSlides{
-				/* border: 1px solid #00f; */
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -153,21 +142,17 @@ body{
 					height: 300px;
 					margin: 30px;
 					margin-left: 0px;
-
 				}
 			#rightSlideContainer{
 				display: none;
-				/* border: 1px solid #00f; */
 				flex-grow: 1;
 				flex-basis: 0;
 				padding: 40px;
 			}
 				#rightSlide{
-
 				}
 	#mapPanel{
 		background-color: #fff;
-		/* border: 1px solid #0f0; */
 		padding: 30px;
 		display: flex;
 		flex-direction: column;
@@ -195,14 +180,13 @@ body{
 				}
 				#searchButton{
 					border: none;
-					background-color: #f30;
+					background-color: #c42700;
 					padding: 5px;
 					color: #fff;
+					cursor: pointer;
 				}
 				#searchButton:active{
-					border: none;
-					background-color: #d10;
-					padding: 5px;
+					background-color: #000;
 				}
 			#map{
 				border: 1px solid #fff;
