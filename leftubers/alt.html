@@ -10,41 +10,27 @@
 	<body>
 		<div id="container">
 			<div id="navContainer">
-				<embed type="text/html" id="navEmbed" src="nav.html"/>
+				<embed type="text/html" src="nav.html" id="navEmbed"/>
 			</div>
 			<div id="bodyContainer">
 				<div id="body">
-					<div id="introPanel">
-						<div id="title">
-							Stop wasting - start eating
-						</div>
-						<div id="introContentContainer">
-							<div id="intro">
-								<!-- <div class="introDesc">
-									LeftUbers is breakthrough in on-demand food delivery.
-								</div> -->
 
-								<div class="introBold">
-									How does it work?
-								</div>
-								<div class="introDesc">
-									Any time you want food, or have extra food, simply open the LeftUbers app and see peers near you to share with.
-								</div>
-								<br>
-								<div class="introBold">
-									What about other delivery apps?
-								</div>
-								<div class="introDesc">
-									Unlike traditional food delivery services, which are inheritly wasteful, LeftUbers' core principle is conservation. With LeftUbers, food is never wasted, and customers can get a meal in the most convenient way possible.
-								</div>
+					<div id="mapPanel">
+						<div id="mapContainer">
+							<div id="searchTitle">
+								Enter your ZIP code
 							</div>
-							<button id="altButton">
-								SHARE LEFTOVERS NOW
-							</button>
+							<div id="searchControls">
+								<input type="number" min="0" max="99999" id="searchBar">
+								<button id="searchButton">
+									Find food
+								</button>
+							</div>
+
+							<iframe id="map" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=New%20york&key=AIzaSyCQX_ULet8FlQkAbgrixwKjXJ-oDFghYws" allowfullscreen></iframe>
 						</div>
 					</div>
 					<hr class="divHR">
-
 
 					<div id="appSlidesContainer">
 						<div id="leftSlideContainer">
@@ -67,7 +53,6 @@
 						</div> -->
 					</div>
 					<hr class="divHR">
-
 				</div>
 			</div>
 			<div id="legalContainer">
