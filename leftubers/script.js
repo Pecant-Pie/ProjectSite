@@ -3,13 +3,15 @@ $("#searchButton").click(function(){
 });
 
 $(".downloadBadge").click(function(){
-	alert("Error");
+	window.top.location = "https://bitly.com/98K8eH";
 });
 
 $("#altButton").click(function(){
 	window.top.location = "alt.html";
 });
 
+
+//Header Easing
 setTimeout(function(){
 	$("#navContainer").animate({
 		top: "0px"
