@@ -78,7 +78,7 @@ body{
 				flex-direction: row;
 				margin: 30px;
 			}
-				#intro{
+				.intro{
 					font-family: 'Roboto Mono';
 					text-align: center;
 				}
