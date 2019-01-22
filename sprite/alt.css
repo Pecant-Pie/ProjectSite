@@ -1,0 +1,80 @@
+/* f7d704 lemon*/
+/* 204795 blue */
+/* c5c6c6 grey */
+/* 059e4f lime*/
+
+*{
+	margin: 0px;
+	padding: 0px;
+
+	font-family: "Arial";
+}
+
+html{
+	height: 100%;
+}
+
+body{
+	height: 100%;
+	width: 100%;
+	background-color: #059e4f;
+}
+
+.eRow{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.eCol{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.eFull{
+	height: 100%;
+	width: 100%;
+}
+
+.eWide{
+	width: 100%;
+}
+
+.eTall{
+	height: 100%;
+}
+
+#bannersContainer{
+	justify-content: center;
+}
+
+#bigLogo{
+	width: 0px;
+	height: 0px;
+}
+
+#rollBar{
+	height: 200px;
+	width: 100%;
+	background-color: #fff;
+}
+
+.linky{
+	color: #f7d704;
+
+}
+
+.spriteTitle{
+	font-size: 60px;
+	font-weight: bold;
+
+	color: #fff;
+}
+
+.spriteDescription{
+	font-size: 30px;
+	font-weight: normal;
+
+	color: #fff;
+}
