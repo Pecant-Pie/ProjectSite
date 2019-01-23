@@ -2,7 +2,7 @@ let logo = $("#bigLogo");
 
 let h = $("#introContainer").height();
 
-let wannas = ["Sprite", "chug", "lemon-lime", "drink", "taste", "sip", "Sprite Cranbery", "refresh"];
+let wannas = ["Sprite", "chug", "lemon-lime", "drink", "taste", "sip", "Sprite Cranbery", "refreshment", "cool one"];
 
 buttonDir = 125;
 
@@ -26,7 +26,7 @@ setInterval(function(){
 	}
 	$("#changeText").text(t);
 	// console.log(t);
-}, 2000);
+}, 1000);
 
 $("#nextButton").hover(function(){
 	$("#nextButton img").finish();

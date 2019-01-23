@@ -1,18 +1,21 @@
 let logo = $("#bigLogo");
-let h = 200;
+let s = 200;
+let height = 700;
 
 $("#descriptionCol").hide();
 
 setTimeout(function(){
 	logo.animate({
-		width: h,
-		height: h
+		width: s,
+		height: s
 	}, 750, "swing", function(){
-		let height = 400;
+
+		$("#bigLogo").fadeTo(750, 0);
+
 		$("#rollBar").animate({
 			marginTop: height,
 		}, 750, "swing", function(){
-			$("#descriptionCol").show();
+			$("#descriptionCol").fadeTo(750, 1);
 		});
 	});
 }, 250);
