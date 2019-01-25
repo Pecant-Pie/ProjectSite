@@ -1,12 +1,15 @@
 //Copyright 2018 Jason Harriot
 
-var obstacleWidth = 40;
-var obstacleHeight = 40;
-var obstacleSpacing = 2; 	//WHOLE NUMBER
-var obstacleSpeed = .5;	//pixels / ms
+const obstacleWidth = 40;
+const obstacleHeight = 40;
+const obstacleSpacing = 2; 	//WHOLE NUMBER
+const obstacleSpeed = .4;	//pixels / ms
 
-var obstaclesH = 9;
-var obstaclesV = 7;
+const obstaclesH = 9;
+const obstaclesV = 7;
+
+var timeScale = 1;
+const acceleration = .999;
 
 var game = $("#game");
 game.css("height", obstaclesV * obstacleHeight * obstacleSpacing);
@@ -15,17 +18,12 @@ game.css("width", obstaclesH * obstacleWidth * obstacleSpacing + obstacleWidth);
 var obstacleDuration = (game.width() + obstacleWidth) / (obstacleSpeed);
 
 var player = $("#player");
-playerSpeed = .5;	//vertical speed per playerLoop
+playerSpeed = .4;	//vertical speed per playerLoop
 
 var frameTime = 20;	//collision loop time TODO: fix phasing
 var hueSpeed = .005;	//needs more RGB
 
-
-
-
-
 //
-
 
 var score = 0;
 var highscore = 0;
@@ -34,14 +32,13 @@ var scoreInterval;
 var loopInterval;
 var currentHue = Math.random();
 
-
-
-
 colorize();
 setInterval(colorize, 250);
 
 
-
+setInterval(function(){
+	timeScale *= acceleration;
+}, 100);
 
 $(document).on("keydown", function(){
 	$("body").css("cursor", "none");
@@ -49,9 +46,6 @@ $(document).on("keydown", function(){
 $(document).on("mousemove", function(){
 	$("body").css("cursor", "default");
 });
-
-
-
 
 $("#endContainer").hide();
 
@@ -62,30 +56,32 @@ $(document).one("keydown", initGame);
 function initGame(){
 	$("#endContainer").hide();
 	$("#startContainer").hide();
-	
+
 	player.css("top", game.height()/2 - obstacleHeight/2);
 	player.show();
-	
+
 	$(".obstacle").each(function(index, data){
 		$(data).remove();
 	});
-	
+
 	colorize();
-	
+
+	timeScale = 1;
+
 	playerSpeed = Math.abs(playerSpeed);
 	score = 0;
-	
+
 	obstacleInterval = setInterval(function(){
 		var b = newObstacle(game.width(), Math.random() * (game.height() - obstacleHeight));
 
 		game.append(b);
 		colorize();
 	}, (obstacleWidth * obstacleSpacing) / obstacleSpeed);
-	
+
 	$(document).keydown(movePlayer);
-	
+
 	movePlayer();
-	
+
 	loopInterval = setInterval(loop, frameTime);
 	scoreInterval = setInterval(function(){
 		score++;
@@ -95,15 +91,12 @@ function initGame(){
 
 function loop(){
 	$(".obstacle").each(function(index, data){
-		if($(this).position().left < player.position().left + player.width()){	//progressive hit scan (saves some CPU? Maybe?)
-			if($(this).position().left + obstacleWidth > player.position().left){
-				if($(this).position().top < player.position().top + player.height()){
-					if($(this).position().top + obstacleWidth > player.position().top){
-						$(this).data("hit", "true");
-						endGame();
-					}
-				}
-			}
+		if($(this).position().left < player.position().left + player.width())
+		if($(this).position().left + obstacleWidth > player.position().left)
+		if($(this).position().top < player.position().top + player.height())
+		if($(this).position().top + obstacleWidth > player.position().top){
+			$(this).data("hit", "true");
+			endGame();
 		}
 	});
 }
@@ -121,7 +114,7 @@ function movePlayer(){
 
 	player.animate({
 		top: "+=" + distance
-	}, duration, "linear", function(){
+	}, duration * timeScale, "linear", function(){
 		endGame();
 	});
 
@@ -130,13 +123,13 @@ function movePlayer(){
 
 function endGame(){
 	$(document).off("keydown");
-	
+
 	player.stop();
-	
+
 	clearInterval(loopInterval);
 	clearInterval(scoreInterval);
 	clearInterval(obstacleInterval);
-	
+
 	$(".obstacle").each(function(index, data){
 		var obj = $(data);
 		obj.stop();
@@ -160,19 +153,19 @@ function endGame(){
 
 function colorize(){
 	var rgb = HSVtoRGB(currentHue, 1, 1);
-	
+
 	$.each($(".rBorder"), function(index, data){
 		$(data).css("border", "1px solid rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")");
 	});
-	
+
 	$.each($(".rText"), function(index, data){
 		$(data).css("color", "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")");
 	});
-	
+
 	$.each($(".rBG"), function(index, data){
 		$(data).css("background-color", "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")");
 	});
-	
+
 	currentHue += hueSpeed;
 	if(currentHue >= 1) currentHue = 0;
 }
@@ -210,13 +203,13 @@ function newObstacle(x, y){
 	e.style.width = obstacleWidth + "px";
 	e.style.left = x + "px";
 	e.style.top = y + "px";
-	
+
 	$(e).animate({
 		left: "-=" + (game.width() + obstacleWidth)
 		},
-		obstacleDuration, "linear", function(){
+		obstacleDuration * timeScale, "linear", function(){
 			$(this).remove();
 		});
-	
+
 	return e;
 }
