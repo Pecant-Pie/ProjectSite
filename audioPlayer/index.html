@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Audio Player Demo</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	</head>
+	<body>
+		<div class="eRow eJust eTall">
+			<div class="eCol eJust">
+				<div id="mainPlayer" class="eCol eAlign eTall eBetween">
+					<img src="media/airhorn.jpg" class="artwork" />
+					<div class="eCol eJust eAlign eWide">
+						<div class="eRow eJust">
+							<div class="butt prev"><<</div>
+							<div class="butt play">></div>
+							<div class="butt next">>></div>
+						</div>
+						<div class="barContainer eRow eJust eAround">
+							<div class="time timeCurrent"></div>
+							<input type="range" class="bar" step="any"/>
+							<div class="time timeTotal"></div>
+						</div>
+						<div class="eRow eJust">
+							<div class="butt voli">-</div>
+							<div class="butt vold">+</div>
+						</div>
+					</div>
+				</div>
+				<div class="eRow eJust eAlign">
+					&copy; 2019 Jason Harriot
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="script.js"></script>
+	</body>
+</html>
