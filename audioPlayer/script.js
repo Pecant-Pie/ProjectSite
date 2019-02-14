@@ -96,6 +96,7 @@ function PlayHead(elem, stuff){
     this.update = function(){
         elem.find(".songTitle").text(obj.media[obj.index].name);
         elem.find(".artwork").attr("src", obj.media[obj.index].artworkPath);
+        $("#background").attr("src", obj.media[obj.index].artworkPath);
     }
 
     /////////
@@ -116,7 +117,7 @@ function PlayHead(elem, stuff){
         obj.next();
     });
     elem.find(".prev").click(function(){
-        obj.next();
+        obj.prev();
     });
 
     elem.find(".voli").click(function(){
