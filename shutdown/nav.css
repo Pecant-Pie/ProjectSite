@@ -1,0 +1,20 @@
+*{
+    --outerRadius: 20px;
+    margin: 0px;
+    padding: 0px;
+    font-family: "Arial";
+}
+
+#navCol{
+
+}
+    .navButt{
+        color: #fff;
+        border: 1px solid #fff;
+        border-radius: var(--outerRadius);
+        padding: 10px;
+        margin-top: 20px;
+    }
+    .navButt:hover{
+        cursor: pointer;
+    }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="nav.css">
+		<link rel="stylesheet" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	</head>
+	<body>
+        <div id="navCol" class="eCol eCenter">
+            <img src="media/capitol.png" width="200px" height="200px">
+            <div class="navButt" data-link="index.html">
+                Introduction
+            </div>
+            <div class="navButt" data-link="sub/matters.html">
+                Why it matters
+            </div>
+            <div class="navButt" data-link="sub/history.html">
+                A Brief History
+            </div>
+            <div class="navButt" data-link="sub/impact.html">
+                The Impact
+            </div>
+            <div class="navButt" data-link="sub/data.html">
+            	Survey Data
+            </div>
+            <div class="navButt" data-link="sub/contacts.html">
+                Call Your Reps
+            </div>
+            <div class="navButt" data-link="sub/store.html">
+                Store
+            </div>
+            <div class="navButt" data-link="sub/about.html">
+                About
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            for(i of $(".navButt")){
+                i.addEventListener("click", function(){
+                    top.location.href = this.getAttribute("data-link");
+                });
+            }
+        </script>
+    </body>
+</html>

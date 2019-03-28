@@ -14,47 +14,47 @@
         <div class="header-wrapper">
             <div class="header">
                 <div class="nav-item">
-                    <a customLink="index.html">
+                    <a data-link="index.html">
                         Home
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a customLink="gagpage/index.html">
+                    <a data-link="gagpage/index.html">
                         Gag Page
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a customLink="macos_6.0.8_invisible_links.html">
+                    <a data-link="macos_6.0.8_invisible_links.html">
                         Mac OS<br>6.0.8
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a customLink="gravgame/index.html">
+                    <a data-link="gravgame/index.html">
 						JQuery Runner
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a customLink="voidportal/index.html">
+                    <a data-link="voidportal/index.html">
                         VOID
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a customLink="rlgraphics.html">
+                    <a data-link="rlgraphics.html">
                         Rokt Leeg
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a customLink="paint/index.html">
+                    <a data-link="paint/index.html">
                         Turtle Paint
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a customLink="mcstatus/index.html">
+                    <a data-link="mcstatus/index.html">
                         MC Ping Tool
                     </a>
                 </div>
 				<div class="nav-item">
-                    <a customLink="leftubers/index.html">
+                    <a data-link="leftubers/index.html">
                         LeftUbers
                     </a>
                 </div>
@@ -65,12 +65,12 @@
             var links = document.getElementsByTagName("a");
 
             for(i of links){
-                var newLink = i.getAttribute("customLink");
+                var newLink = i.getAttribute("data-link");
 
 //                console.log("List Links: " + newLink);
 
                 i.addEventListener("click", function(){
-                    var thisLink = this.getAttribute("customLink");
+                    var thisLink = this.getAttribute("data-link");
 //                    console.log("New Link: " + thisLink);
                     top.location.href = thisLink;
                 })

@@ -1,0 +1,146 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    --outerRadius: 10px;
+    --halfMarginContainer: 40px;
+    font-family: "Arial";
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+}
+    #container{
+        /* width: 800px; */
+        margin-left: auto;
+        margin-right: auto;
+    }
+        #headerContainer{
+            margin: var(--halfMarginContainer);
+            margin-bottom: 0px;
+            border: 1px solid #000;
+            border-radius: var(--outerRadius);
+            padding: 10px;
+        }
+            #headerContainer div{
+                font-size: 50px;
+            }
+        #contentContainer{
+            flex-grow: 1;
+            background-color: #222;
+            padding: 30px;
+            border-radius: var(--outerRadius);
+            margin: var(--halfMarginContainer);
+        }
+            #contentBody{
+                color: #fff;
+            }
+                #introContainer{
+                    font-size: 20px;
+                    margin: 20px;
+                }
+                #navInsert{
+                    min-height: 700px;
+                }
+
+            #nextContainer{
+                border: 1px solid #fff;
+                border-radius: var(--outerRadius);
+                color: #fff;
+                padding: 10px;
+            }
+                #nextButt{
+                    border-radius: var(--outerRadius);
+                    width: 40px;
+                    height: 40px;
+                    background-color: #fff;
+                    color: #000;
+                    margin-left: 10px;
+
+                }
+
+        #footerContainer{
+            margin: var(--halfMarginContainer);
+            margin-top: 0px;
+            border: 1px solid #000;
+            border-radius: var(--outerRadius);
+            padding: 10px;
+        }
+            #footerContainer div{
+                font-size: 15px;
+            }
+
+            .questionHeading{
+                font-size: 40px;
+            }
+
+.bodyImage{
+    height: 400px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+}
+
+.dataImage{
+    height: 200px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+}
+
+.linkContainer{
+    margin-right: 40px;
+    margin-bottom: 40px;
+}
+.linkContainer a{
+    text-decoration: none;
+    color: #000;
+
+    text-align: center;
+}
+    .linkButt{
+        border: 1px solid #fff;
+        border-radius: var(--outerRadius);
+        padding: 10px;
+        background-color: #a2ff93;
+    }
+    .linkButt:hover{
+        background-color: #000;
+        color: #fff;
+    }
+
+
+
+
+.noDecoration{
+    text-decoration: none;
+}
+
+
+
+
+.eRow{
+    display: flex;
+    flex-direction: row;
+}
+.eCol{
+    display: flex;
+    flex-direction: column;
+}
+.eBetween{
+    justify-content: space-between;
+}
+.eAround{
+    justify-content: space-around;
+}
+.eStart{
+    justify-content: flex-start;
+}
+.eEnd{
+    justify-content: flex-end;
+}
+.eCenter{
+    justify-content: center;
+    align-items: center;
+}
