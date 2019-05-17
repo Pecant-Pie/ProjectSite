@@ -1,0 +1,91 @@
+*{
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	font-family: "Roboto Mono";
+	color: #fff;
+}
+
+html{
+	height: 100%;
+}
+
+body{
+	height: 100%;
+	background-color: #000;
+}
+
+#counterContainer{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    font-size: 50px;
+}
+
+#column{
+    font-size: 30px;
+    margin-top: 75px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #55f;
+}
+
+#container{
+	margin: 15px;
+}
+
+.hr{
+	height: 1px;
+	background-color: #fff;
+	width: 100%;
+}
+
+.eCol{
+	display: flex;
+	flex-direction: column;
+}
+.eRow{
+	display: flex;
+	flex-direction: row;
+}
+.eBetween{
+	justify-content: space-between;
+}
+.eAround{
+	justify-content: space-around;
+}
+.eCenter{
+	justify-content: center;
+}
+.eAlign{
+	align-items: center;
+}
+.eStart{
+	justify-content: flex-start;
+}
+.eEnd{
+	justify-content: flex-end;
+}
+.eTall{
+	height: 100%;
+}
+.eWide{
+	width: 100%;
+}
+.eGrow{
+	flex-grow: 1;
+}
+.eJustify{
+	text-align: center;
+}

@@ -3,7 +3,7 @@
 var obstacleWidth = 40;
 var obstacleHeight = 40;
 var obstacleSpacing = 2; 	//WHOLE NUMBER
-var obstacleSpeed = .5;	//pixels / ms
+var obstacleSpeed = .4;	//pixels / ms
 
 var obstaclesH = 9;
 var obstaclesV = 7;
@@ -15,10 +15,13 @@ game.css("width", obstaclesH * obstacleWidth * obstacleSpacing + obstacleWidth);
 var obstacleDuration = (game.width() + obstacleWidth) / (obstacleSpeed);
 
 var player = $("#player");
-playerSpeed = .5;	//vertical speed per playerLoop
+playerSpeed = .4;	//vertical speed per playerLoop
 
 var frameTime = 20;	//collision loop time TODO: fix phasing
 var hueSpeed = .005;	//needs more RGB
+
+var timeScale = 1;
+const acceleration = .9995;
 
 //
 
@@ -31,6 +34,10 @@ var currentHue = Math.random();
 
 colorize();
 setInterval(colorize, 250);
+
+setInterval(function(){
+	timeScale *= acceleration;
+}, 100);
 
 $(document).on("keydown", function(){
 	$("body").css("cursor", "none");
@@ -61,6 +68,8 @@ function initGame(){
 	});
 
 	colorize();
+
+	timeScale = 1;
 
 	playerSpeed = Math.abs(playerSpeed);
 	score = 0;
@@ -112,7 +121,7 @@ function movePlayer(){
 
 	player.animate({
 		top: "+=" + distance
-	}, duration, "linear", function(){
+	}, duration * timeScale, "linear", function(){
 		endGame();
 	});
 
@@ -164,7 +173,7 @@ function colorize(){
 		$(data).css("background-color", "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")");
 	});
 
-	currentHue += hueSpeed;
+	currentHue += hueSpeed / timeScale;
 	if(currentHue >= 1) currentHue = 0;
 }
 
@@ -205,7 +214,7 @@ function newObstacle(x, y){
 	$(e).animate({
 		left: "-=" + (game.width() + obstacleWidth)
 		},
-		obstacleDuration, "linear", function(){
+		obstacleDuration * timeScale, "linear", function(){
 			$(this).remove();
 		});
 
