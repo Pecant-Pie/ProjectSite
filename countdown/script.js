@@ -1,7 +1,11 @@
 var target = new Date("June 6, 2019 12:00:00");
 
-setInterval(function(){
+function doStuff(){
     var d = new Date(target - new Date());
     var t = d.getDate() + "d " + d.getHours() + "h " + d.getMinutes() + "m " + d.getSeconds() + "s";
     $("#counter").text("June 6, 2019 - " + t);
-}, 1000);
+}
+
+doStuff();
+
+setInterval(doStuff, 1000);
